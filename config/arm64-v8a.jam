@@ -1,0 +1,57 @@
+import os ;  
+  
+if [ os.name ] = CYGWIN || [ os.name ] = NT  
+{  
+    androidPlatform = windows ;  
+}  
+else if [ os.name ] = LINUX  
+{  
+    androidPlatform = linux-x86_64 ;  
+}  
+else if [ os.name ] = MACOSX  
+{  
+    androidPlatform = darwin-x86_64 ;  
+}
+  
+modules.poke : NO_BZIP2 : 1 ;  
+
+local ANDROID_NDK = [ os.environ ANDROID_NDK_ROOT ] ; 
+
+using gcc : android :  
+$(ANDROID_NDK)/toolchains/aarch64-linux-android-4.9/prebuilt/$(androidPlatform)/bin/aarch64-linux-android-g++ :  
+<compileflags>--sysroot=$(ANDROID_NDK)/platforms/android-21/arch-arm64
+<compileflags>-I$(ANDROID_NDK)/platforms/android-21/arch-arm64/usr/include
+<compileflags>-I$(ANDROID_NDK)/sources/cxx-stl/gnu-libstdc++/4.9/include
+<compileflags>-I$(ANDROID_NDK)/sources/cxx-stl/gnu-libstdc++/4.9/libs/arm64-v8a/include
+<compileflags>-std=c++11
+<compileflags>-fexceptions
+<compileflags>-frtti
+<compileflags>-D__ANDROID__
+<compileflags>-DNDEBUG
+<compileflags>-D_LITTLE_ENDIAN
+<compileflags>-D_POSIX_THREADS=1
+<compileflags>-D_POSIX_SOURCE
+<compileflags>-DANDROID
+<compileflags>-D__ARM_ARCH_8__
+<compileflags>-D__ARM_ARCH_8A__
+<compileflags>-march=armv8-a
+<compileflags>-mtune=cortex-a53
+<compileflags>-fpic
+<compileflags>-ffunction-sections
+<compileflags>-funwind-tables
+<compileflags>-fstack-protector
+<compileflags>-fno-short-enums
+<compileflags>-fomit-frame-pointer
+<compileflags>-fno-strict-aliasing
+<compileflags>-finline-limit=64
+<compileflags>-Wno-psabi
+<compileflags>-Os
+<compileflags>-O2
+<compileflags>-g
+<cxxflags>-D__arm__
+<cxxflags>-D_REENTRANT
+<cxxflags>-D_GLIBCXX__PTHREADS
+<architecture>arm
+<archiver>$(ANDROID_NDK)/toolchains/aarch64-linux-android-4.9/prebuilt/$(androidPlatform)/bin/aarch64-linux-android-ar  
+<ranlib>$(ANDROID_NDK)/toolchains/aarch64-linux-android-4.9/prebuilt/$(androidPlatform)/bin/aarch64-linux-android-ranlib  
+;
