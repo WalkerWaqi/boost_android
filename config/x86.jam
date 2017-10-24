@@ -48,3 +48,16 @@ $(ANDROID_NDK)/toolchains/x86-4.9/prebuilt/$(androidPlatform)/bin/i686-linux-and
 <archiver>$(ANDROID_NDK)/toolchains/x86-4.9/prebuilt/$(androidPlatform)/bin/i686-linux-android-ar  
 <ranlib>$(ANDROID_NDK)/toolchains/x86-4.9/prebuilt/$(androidPlatform)/bin/i686-linux-android-ranlib  
 ;
+
+using gcc : clang :  
+$(ANDROID_NDK)/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ :  
+<compileflags>--sysroot=$(ANDROID_NDK)/platforms/android-9/arch-x86 
+<compileflags>-I$(ANDROID_NDK)/sources/cxx-stl/llvm-libc++/include 
+<compileflags>-I$(ANDROID_NDK)/sources/cxx-stl/llvm-libc++abi/include 
+<compileflags>-I$(ANDROID_NDK)/sources/android/support/include 
+<compileflags>-g 
+<compileflags>-Os 
+<compileflags>-O2 
+<compileflags>--target=i686-none-linux-android 
+<architecture>x86 
+;

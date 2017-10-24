@@ -55,3 +55,16 @@ $(ANDROID_NDK)/toolchains/aarch64-linux-android-4.9/prebuilt/$(androidPlatform)/
 <archiver>$(ANDROID_NDK)/toolchains/aarch64-linux-android-4.9/prebuilt/$(androidPlatform)/bin/aarch64-linux-android-ar  
 <ranlib>$(ANDROID_NDK)/toolchains/aarch64-linux-android-4.9/prebuilt/$(androidPlatform)/bin/aarch64-linux-android-ranlib  
 ;
+
+using gcc : clang :  
+$(ANDROID_NDK)/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ :  
+<compileflags>--sysroot=$(ANDROID_NDK)/platforms/android-21/arch-arm64 
+<compileflags>-I$(ANDROID_NDK)/sources/cxx-stl/llvm-libc++/include 
+<compileflags>-I$(ANDROID_NDK)/sources/cxx-stl/llvm-libc++abi/include 
+<compileflags>-I$(ANDROID_NDK)/sources/android/support/include 
+<compileflags>-g 
+<compileflags>-Os 
+<compileflags>-O2 
+<compileflags>--target=aarch64-none-linux-android 
+<architecture>arm 
+;

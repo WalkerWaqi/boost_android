@@ -19,11 +19,10 @@ local ANDROID_NDK = [ os.environ ANDROID_NDK_ROOT ] ;
 
 using gcc : android :  
 $(ANDROID_NDK)/toolchains/x86_64-4.9/prebuilt/$(androidPlatform)/bin/x86_64-linux-android-g++ :  
-<compileflags>--sysroot=$(ANDROID_NDK)/platforms/android-9/arch-x86
+<compileflags>--sysroot=$(ANDROID_NDK)/platforms/android-21/arch-x86_64
 <compileflags>-I$(ANDROID_NDK)/sources/cxx-stl/gnu-libstdc++/4.9/include
-<compileflags>-I$(ANDROID_NDK)/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86/include
-<compileflags>-I$(ANDROID_NDK)/platforms/android-9/arch-x86/usr/include
-<compileflags>-I$(ANDROID_NDK)/platforms/android-9/arch-x86_64/usr/include
+<compileflags>-I$(ANDROID_NDK)/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include
+<compileflags>-I$(ANDROID_NDK)/platforms/android-21/arch-x86_64/usr/include
 <compileflags>-std=c++11
 <compileflags>-fexceptions
 <compileflags>-frtti
@@ -43,9 +42,22 @@ $(ANDROID_NDK)/toolchains/x86_64-4.9/prebuilt/$(androidPlatform)/bin/x86_64-linu
 <compileflags>-fvisibility=hidden
 <compileflags>-fvisibility-inlines-hidden
 <compileflags>-fdata-sections
-<architecture>i686
+<architecture>x86
 <cxxflags>-D_REENTRANT
 <cxxflags>-D_GLIBCXX__PTHREADS
 <archiver>$(ANDROID_NDK)/toolchains/x86_64-4.9/prebuilt/$(androidPlatform)/bin/x86_64-linux-android-ar  
 <ranlib>$(ANDROID_NDK)/toolchains/x86_64-4.9/prebuilt/$(androidPlatform)/bin/x86_64-linux-android-ranlib  
+;
+
+using gcc : clang :  
+$(ANDROID_NDK)/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ :  
+<compileflags>--sysroot=$(ANDROID_NDK)/platforms/android-21/arch-x86_64 
+<compileflags>-I$(ANDROID_NDK)/sources/cxx-stl/llvm-libc++/include 
+<compileflags>-I$(ANDROID_NDK)/sources/cxx-stl/llvm-libc++abi/include 
+<compileflags>-I$(ANDROID_NDK)/sources/android/support/include 
+<compileflags>-g 
+<compileflags>-Os 
+<compileflags>-O2 
+<compileflags>--target=x86_64-none-linux-android 
+<architecture>x86 
 ;

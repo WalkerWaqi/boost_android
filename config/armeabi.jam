@@ -58,3 +58,16 @@ $(ANDROID_NDK)/toolchains/arm-linux-androideabi-4.9/prebuilt/$(androidPlatform)/
 <archiver>$(ANDROID_NDK)/toolchains/arm-linux-androideabi-4.9/prebuilt/$(androidPlatform)/bin/arm-linux-androideabi-ar  
 <ranlib>$(ANDROID_NDK)/toolchains/arm-linux-androideabi-4.9/prebuilt/$(androidPlatform)/bin/arm-linux-androideabi-ranlib  
 ;
+
+using gcc : clang :  
+$(ANDROID_NDK)/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ :  
+<compileflags>--sysroot=$(ANDROID_NDK)/platforms/android-9/arch-arm 
+<compileflags>-I$(ANDROID_NDK)/sources/cxx-stl/llvm-libc++/include 
+<compileflags>-I$(ANDROID_NDK)/sources/cxx-stl/llvm-libc++abi/include 
+<compileflags>-I$(ANDROID_NDK)/sources/android/support/include 
+<compileflags>-g 
+<compileflags>-Os 
+<compileflags>-O2 
+<compileflags>--target=armv5te-none-linux-androideabi 
+<architecture>arm 
+;
