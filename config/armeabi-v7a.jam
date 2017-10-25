@@ -68,4 +68,9 @@ $(ANDROID_NDK)/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ :
 <compileflags>-O2 
 <compileflags>--target=armv7a-none-linux-androideabi 
 <architecture>arm 
+<cxxflags>-D__arm__
+<cxxflags>-D_REENTRANT
+<cxxflags>-D_GLIBCXX__PTHREADS
+<archiver>$(ANDROID_NDK)/toolchains/arm-linux-androideabi-4.9/prebuilt/$(androidPlatform)/bin/arm-linux-androideabi-ar  
+<ranlib>$(ANDROID_NDK)/toolchains/arm-linux-androideabi-4.9/prebuilt/$(androidPlatform)/bin/arm-linux-androideabi-ranlib  
 ;

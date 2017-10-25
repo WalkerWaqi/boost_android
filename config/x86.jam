@@ -60,4 +60,8 @@ $(ANDROID_NDK)/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ :
 <compileflags>-O2 
 <compileflags>--target=i686-none-linux-android 
 <architecture>x86 
+<cxxflags>-D_REENTRANT
+<cxxflags>-D_GLIBCXX__PTHREADS
+<archiver>$(ANDROID_NDK)/toolchains/x86-4.9/prebuilt/$(androidPlatform)/bin/i686-linux-android-ar  
+<ranlib>$(ANDROID_NDK)/toolchains/x86-4.9/prebuilt/$(androidPlatform)/bin/i686-linux-android-ranlib  
 ;
