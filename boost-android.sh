@@ -96,8 +96,8 @@ do
 	# cd "${STAGEDIR}"/prefix/lib
 	# ${AR} crus libboost.a *.a
 
-	mkdir -p "${OUTPUTDIR}"/lib/"${ABI}"
-	rsync -avp "${PREFIXDIR}"/include "${OUTPUTDIR}"
-	rsync -avp "${STAGEDIR}"/prefix/lib/* "${OUTPUTDIR}"/lib/"${ABI}"/
+	mkdir -p "${OUTPUTDIR}"/"${ABI}"/lib
+	rsync -avp "${PREFIXDIR}"/include "${OUTPUTDIR}"/"${ABI}"
+	rsync -avp "${STAGEDIR}"/prefix/lib/* "${OUTPUTDIR}"/"${ABI}"/lib/
 	# cp "${STAGEDIR}"/prefix/lib/libboost.a lib/"${ABI}"/libboost.a
 done
